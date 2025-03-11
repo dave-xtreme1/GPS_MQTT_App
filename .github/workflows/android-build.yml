@@ -3,10 +3,10 @@ name: Android Build
 on:
   push:
     branches:
-      - main  # Runs on every push to main
+      - main
   pull_request:
     branches:
-      - main  # Runs on every PR to main
+      - main
 
 jobs:
   build:
@@ -22,6 +22,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+
+      - name: Generate Gradle Wrapper
+        run: gradle wrapper || ./gradlew wrapper
 
       - name: Grant execute permission to Gradle
         run: chmod +x gradlew
